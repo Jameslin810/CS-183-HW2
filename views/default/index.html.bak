@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<h1>
+    Your Profile
+</h1>
+
+{{=form}}
+
+<p>
+    <!-- Follow this link to add personal tasks <a href = "{{=URL('default', 'add')}}"> here</a> -->
+    <!--<button type="button" onclick= href = "{{=URL('default', 'add')}}">Add</button> -->
+    <a class="btn" href = "{{=URL('default', 'add')}}">Add Assignment</a>
+    <br>
+    <a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a>
+    <!--Follow this link to assign tasks to others <a href = "{{=URL('default', 'add_other')}}"> here</a> -->
+    <br> 
+   
+</p>
