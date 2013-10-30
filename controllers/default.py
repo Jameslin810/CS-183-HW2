@@ -14,12 +14,12 @@ def index():
     #form = db(db.our_to_do_list.Author == db.auth_user.first_name).select(db.our_to_do_list.ALL)
     query = (db.our_to_do_list.Author == auth.user_id)
     form = SQLFORM.grid(query)
-    query_one = (db.assigned_to_others.Assignee == auth.first_name)
-    form = SQLFORM.grid(query_one)   
-    query_two = (db.assigned_to_others.Author == auth.user_id)
+    query_one = (db.assigned_to_others.Assignee == auth.user.first_name)
+    form_one = SQLFORM.grid(query_one)
+    query_two = (db.assigned_to_others.Author == auth.user.first_name)
     form_two = SQLFORM.grid(query_two)
     #db(db.assigned_to_others.Author == db.auth_user.first_name).select(db.assigned_to_others.ALL)
-    return dict(form=form, form_two = form_two)
+    return dict(form=form, form_two = form_two, form_one = form_one)
 
 def add():
     form = SQLFORM(db.our_to_do_list, requires = IS_NOT_EMPTY)

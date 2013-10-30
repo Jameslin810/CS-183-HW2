@@ -1,9 +1,15 @@
 {{extend 'layout.html'}}
 <h1>
-    Your Profile
+    Assignments You Assign
 </h1>
 
 {{=form}}
+
+<h2>
+    Assignments Assigned to you
+</h2>
+
+{{=form_one}}
 
 <p>
     <!-- Follow this link to add personal tasks <a href = "{{=URL('default', 'add')}}"> here</a> -->
@@ -15,3 +21,8 @@
     <br> 
    
 </p>
+
+<h3>
+    Assignments you assigned to others
+</h3>
+{{=form_two}}

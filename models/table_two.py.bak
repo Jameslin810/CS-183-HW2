@@ -1,7 +1,7 @@
 # coding: utf8
 
 db.define_table('assigned_to_others',
-                Field('Author', 'string', default = auth.first_name),
+                Field('Author', 'string', default = auth.user_id),
                 Field('Assignee', 'string'),
                 Field('Title', 'string'),
                 Field('ToDo', 'text')
