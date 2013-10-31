@@ -10,7 +10,6 @@
         Assignments You Assign
     </h1>
     <span> <a class="btn" href = "{{=URL('default', 'add')}}">Add Assignment</a> </span>
-    <a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a>
     {{=form}}
 </div1>
 
@@ -18,14 +17,15 @@
 <div2>
     <h1>
         Assignments Assigned to you
+         {{=form_one}}
     </h1>
-{{=form_one}}
+
 </div2>
 
 <div3>
     <h1>
         Assignments you assigned to others
     </h1>
-    <span><a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a> </span>
+    <span><a class="btn" href = "{{=URL('default', 'Assign_to_other')}}">Assign to Others</a> </span>
     {{=form_two}}
 </div3>

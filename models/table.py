@@ -1,13 +1,13 @@
 # coding: utf8
-def get_first_name():
+def get_first_email():
     if auth.user:
-        return auth.user.first_name
+        return auth.user.email
     else:
         return 'anonymous'
 
 
 db.define_table('our_to_do_list',
-                Field('Author', 'string', default = get_first_name),
+                Field('Author', 'string', default = get_first_email),
                 Field('Title', 'string'),
                 Field('ToDo', 'text')
 )

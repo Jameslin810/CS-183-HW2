@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h1>This is the Assign_to_other.html template</h1>
+{{=BEAUTIFY(response._vars)}}

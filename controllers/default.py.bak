@@ -8,21 +8,38 @@
 ## - download is for downloading files uploaded in the db (does streaming)
 ## - call exposes all registered services (none by default)
 #########################################################################
+def get_first_email():
+    if auth.user:
+        return auth.user.email
+    else:
+        return 'anonymous'
 
 
 @auth.requires_login()
-def index():
-    query = (db.our_to_do_list.Author == auth.first_name)
+def index(): 
+    query = (db.our_to_do_list.Author == get_first_email)
     form = SQLFORM.grid(query,
-    searchable = False, create = False)
-    query_one = (db.assigned_to_others.Assignee == auth.user.first_name)
+    searchable = False, create = False, editable = False, csv = False)
+    query_one = (db.assigned_to_others.Assignees_Email == auth.user.email)
     form_one = SQLFORM.grid(query_one,
-    searchable = False, create = False)
-    query_two = (db.assigned_to_others.Author == auth.user.first_name)
+    searchable = False, create = False, editable = False,  csv = False, links=[
+    dict(header=T('Accepted?'),
+          body = lambda r: r.Task_Accepted), # displays False all the time),
+        ])
+    query_two = (db.assigned_to_others.Author == auth.user.email)
     form_two = SQLFORM.grid(query_two,
-    searchable = False, create = False)
+    searchable = False, create = False, editable = False, csv = False)
     return dict(form=form, form_two = form_two, form_one = form_one)
 
+
+def accept_task():
+    form = SQLFORM(db.assigned_to_others)
+    if form.process().on_clik:
+        if form.vars.Assignee == get_first_email:
+            my_record = db.assigned_to_others(db.assigned_to_others.id == form.vars.id)
+            my_record.update_record(Task_Accepted=True)
+            session.flash=T(str(form.vars.Task_Accepted))
+    redirect(URL('default', 'index'))
 
 def add():
     form = SQLFORM(db.our_to_do_list, requires = IS_NOT_EMPTY)
@@ -31,7 +48,7 @@ def add():
         redirect('index')
     return dict(form = form)
 
-def add_other():
+def Assign_to_other():
     form = SQLFORM(db.assigned_to_others, requires = IS_NOT_EMPTY)
     if form.process().accepted:
         session.flash = 'Task assigned to other'
