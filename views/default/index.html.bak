@@ -1,28 +1,31 @@
 {{extend 'layout.html'}}
-<h1>
-    Assignments You Assign
-</h1>
-
-{{=form}}
-
-<h2>
-    Assignments Assigned to you
-</h2>
-
-{{=form_one}}
-
 <p>
     <!-- Follow this link to add personal tasks <a href = "{{=URL('default', 'add')}}"> here</a> -->
     <!--<button type="button" onclick= href = "{{=URL('default', 'add')}}">Add</button> -->
-    <a class="btn" href = "{{=URL('default', 'add')}}">Add Assignment</a>
-    <br>
-    <a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a>
-    <!--Follow this link to assign tasks to others <a href = "{{=URL('default', 'add_other')}}"> here</a> -->
-    <br> 
-   
-</p>
 
-<h3>
-    Assignments you assigned to others
-</h3>
-{{=form_two}}
+    <!--Follow this link to assign tasks to others <a href = "{{=URL('default', 'add_other')}}"> here</a> -->
+    <br>
+<div1>
+    <h1>
+        Assignments You Assign
+    </h1>
+    <span> <a class="btn" href = "{{=URL('default', 'add')}}">Add Assignment</a> </span>
+    <a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a>
+    {{=form}}
+</div1>
+
+
+<div2>
+    <h1>
+        Assignments Assigned to you
+    </h1>
+{{=form_one}}
+</div2>
+
+<div3>
+    <h1>
+        Assignments you assigned to others
+    </h1>
+    <span><a class="btn" href = "{{=URL('default', 'add_other')}}">Assign to Others</a> </span>
+    {{=form_two}}
+</div3>
